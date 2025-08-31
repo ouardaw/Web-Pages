@@ -1,0 +1,482 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stellaris - Your Cosmic Explorer</title>
+
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #0a0a0f;
+            background-image: 
+                radial-gradient(ellipse at 20% 30%, #1a0033 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, #001133 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 60%, rgba(251, 146, 60, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 50%, #0a0a1a 0%, #000000 100%);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* 3D Card Styles */
+        .cosmic-card-3d {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(251, 146, 60, 0.05), rgba(59, 130, 246, 0.05));
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            border-radius: 24px;
+            padding: 2rem;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+            box-shadow: 
+                0 10px 40px rgba(147, 51, 234, 0.3),
+                0 2px 10px rgba(251, 146, 60, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .cosmic-card-3d::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            padding: 2px;
+            background: linear-gradient(135deg, #9333ea, #fb923c, #3b82f6, #ec4899);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.6s;
+        }
+
+        .cosmic-card-3d:hover::before {
+            opacity: 1;
+        }
+
+        .cosmic-card-3d:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(-5deg) translateZ(50px);
+            box-shadow: 
+                0 30px 60px rgba(147, 51, 234, 0.4),
+                0 15px 30px rgba(251, 146, 60, 0.3),
+                inset 0 2px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .card-glow {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(251, 146, 60, 0.3), rgba(147, 51, 234, 0.2), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.6s;
+            pointer-events: none;
+        }
+
+        .cosmic-card-3d:hover .card-glow {
+            opacity: 1;
+        }
+
+        /* Animated Background Stars */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle linear infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Shooting Stars */
+        .shooting-star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(45deg, transparent, #fff, transparent);
+            border-radius: 50%;
+            animation: shoot 3s linear infinite;
+            box-shadow: 
+                0 0 10px 2px rgba(255, 255, 255, 0.8),
+                0 0 20px 4px rgba(251, 146, 60, 0.5),
+                0 0 30px 6px rgba(147, 51, 234, 0.3);
+        }
+
+        .shooting-star::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -150px;
+            width: 150px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), rgba(251, 146, 60, 0.6));
+            transform: translateY(-50%);
+        }
+
+        @keyframes shoot {
+            0% {
+                transform: translate(-200px, -200px);
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(calc(100vw + 200px), calc(100vh + 200px));
+                opacity: 0;
+            }
+        }
+
+        /* Nebula Animation */
+        .nebula {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            background: radial-gradient(circle, #9333ea, transparent);
+            top: -300px;
+            left: -300px;
+        }
+
+        .nebula-2 {
+            background: radial-gradient(circle, #fb923c, transparent);
+            bottom: -300px;
+            right: -300px;
+            animation-delay: -10s;
+        }
+
+        .nebula-3 {
+            background: radial-gradient(circle, #ec4899, transparent);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        /* Title Animation */
+        .title-glow {
+            animation: titlePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes titlePulse {
+            0%, 100% {
+                filter: brightness(1) drop-shadow(0 0 20px rgba(251, 146, 60, 0.5));
+            }
+            50% {
+                filter: brightness(1.2) drop-shadow(0 0 40px rgba(251, 146, 60, 0.8));
+            }
+        }
+
+        /* Icon Float Animation */
+        .icon-float {
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Button Pulse */
+        .btn-cosmic {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .btn-cosmic::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-cosmic:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Particle effect */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0;
+            animation: particle 3s linear;
+        }
+
+        @keyframes particle {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--x), var(--y)) scale(0);
+            }
+        }
+
+        /* Grid container perspective */
+        .cards-container {
+            perspective: 1000px;
+        }
+    </style>
+</head>
+<body class="text-slate-100">
+
+    <!-- Animated Background Elements -->
+    <div class="stars-container"></div>
+    <div class="nebula nebula-1"></div>
+    <div class="nebula nebula-2"></div>
+    <div class="nebula nebula-3"></div>
+    
+    <!-- Shooting Stars -->
+    <div class="shooting-star" style="top: 20%; left: -200px; animation-delay: 0s;"></div>
+    <div class="shooting-star" style="top: 50%; left: -200px; animation-delay: 1.5s;"></div>
+    <div class="shooting-star" style="top: 80%; left: -200px; animation-delay: 3s;"></div>
+
+    <!-- Main Content -->
+    <div class="relative min-h-screen flex flex-col items-center justify-center p-6 md:p-12 z-10">
+
+        <!-- Main Title with Enhanced Animation -->
+        <h1 class="font-orbitron text-5xl md:text-6xl lg:text-7xl font-black tracking-wider uppercase mb-2 title-glow">
+            <span class="bg-gradient-to-r from-orange-400 via-purple-500 to-blue-500 bg-clip-text text-transparent animate-gradient">
+                Stellaris
+            </span>
+        </h1>
+
+        <!-- Animated Subtitle -->
+        <p class="text-xl md:text-2xl text-orange-300 mb-4 opacity-80 animate-pulse">
+            Your Cosmic Night Sky Agent
+        </p>
+
+        <!-- Description -->
+        <p class="max-w-3xl mx-auto mt-6 text-base md:text-lg text-slate-300 leading-relaxed text-center mb-12">
+            Explore the universe with Stellaris, blending real-time sky tracking and AI cosmic wisdom.
+        </p>
+
+        <!-- 3D Feature Cards Grid - 2x2 Layout -->
+        <div class="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 cards-container">
+
+            <!-- Card 1: Live Conditions -->
+            <div class="cosmic-card-3d group">
+                <div class="card-glow"></div>
+                <div class="relative z-10">
+                    <div class="text-4xl mb-4 icon-float">🌌</div>
+                    <h3 class="font-orbitron text-xl text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500 mb-3">
+                        Cosmic Discovery Hub
+                    </h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Start each day with jaw-dropping cosmic revelations! Experience NASA's breathtaking Image of the Day, mind-bending space facts, and real-time weather conditions. Every visit unveils new wonders that'll transform how you see the universe.
+                    </p>
+                    <div class="mt-4 flex items-center text-xs text-orange-400">
+                        <span class="animate-pulse">● NEW DAILY</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Celestial Tracker -->
+            <div class="cosmic-card-3d group">
+                <div class="card-glow"></div>
+                <div class="relative z-10">
+                    <div class="text-4xl mb-4 icon-float" style="animation-delay: 0.5s">🪐</div>
+                    <h3 class="font-orbitron text-xl text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-orange-500 mb-3">
+                        Celestial Navigator
+                    </h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Your personal guide to tonight's celestial show! Instantly discover which planets are blazing bright, track constellations in real-time, and get exact viewing times and positions. Never miss Jupiter's moons or Saturn's rings again!
+                    </p>
+                    <div class="mt-4 flex items-center text-xs text-amber-400">
+                        <span>🔭</span>
+                        <span class="ml-2 opacity-60">Venus is out, don’t miss it!</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: ISS Tracking -->
+            <div class="cosmic-card-3d group">
+                <div class="card-glow"></div>
+                <div class="relative z-10">
+                    <div class="text-4xl mb-4 icon-float" style="animation-delay: 1s">🛸</div>
+                    <h3 class="font-orbitron text-xl text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-teal-500 mb-3">
+                        Station Tracker
+                    </h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Catch humanity’s orbital outpost zooming overhead! See when the ISS is passing overhead, track it live on our interactive map, discover the astronauts aboard the station, and watch them race across your sky at 17,500 mph!
+                    </p>
+                    <div class="mt-4 flex items-center text-xs text-orange-400">
+                        <span>🛰️</span>
+                        <span class="ml-2 opacity-60">ISS blazing by!</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Cosmic Oracle -->
+            <div class="cosmic-card-3d group">
+                <div class="card-glow"></div>
+                <div class="relative z-10">
+                    <div class="text-4xl mb-4 icon-float" style="animation-delay: 1.5s">🔮</div>
+                    <h3 class="font-orbitron text-xl text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-orange-500 mb-3">
+                        Cosmic Oracle
+                    </h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Unlock the secrets of the cosmos with our AI-powered space Oracle! Ask anything from "How do black holes work?" to "What is dark matter?" Get instant, mind-expanding answers that make complex astronomy simple and exciting.
+                    </p>
+                    <div class="mt-4 flex items-center text-xs text-orange-300">
+                        <span>✨</span>
+                        <span class="ml-2 opacity-60">Powered by ChatGPT</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Call to Action Button -->
+        <!-- Call to Action Button -->
+        <a href="https://stellaris-cosmic-night-agent.streamlit.app"
+           target="_blank"
+           rel="noopener"
+           class="btn-cosmic mt-16 px-10 py-5 font-orbitron text-lg font-bold text-white
+          bg-gradient-to-r from-orange-500 via-purple-600 to-blue-600
+          rounded-full shadow-2xl hover:shadow-orange-500/50
+          transform hover:scale-110 transition-all duration-300
+          tracking-widest uppercase relative overflow-hidden">
+            <span class="relative z-10">LAUNCH STELLARIS</span>
+        </a>
+
+        <!-- Additional Info -->
+        <div class="mt-8 text-center">
+            <p class="text-sm text-slate-400 opacity-60">Data sources: OpenWeatherMap, Sunrise-Sunset.org, Open-Notify ISS, OpenAI GPT-3.5</p>
+        </div>
+    </div>
+
+    <script>
+        // Generate random stars
+        const starsContainer = document.querySelector('.stars-container');
+        const numStars = 200;
+
+        for (let i = 0; i < numStars; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const size = Math.random() * 2 + 0.5;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            star.style.animationDelay = `${Math.random() * 3}s`;
+            starsContainer.appendChild(star);
+        }
+
+        // Create particle effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.95) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = e.clientX + 'px';
+                particle.style.top = e.clientY + 'px';
+                particle.style.width = '4px';
+                particle.style.height = '4px';
+                particle.style.background = 'white';
+                particle.style.borderRadius = '50%';
+                particle.style.boxShadow = '0 0 6px rgba(251, 146, 60, 0.8)';
+                particle.style.setProperty('--x', (Math.random() - 0.5) * 100 + 'px');
+                particle.style.setProperty('--y', (Math.random() - 0.5) * 100 + 'px');
+                document.body.appendChild(particle);
+                
+                setTimeout(() => particle.remove(), 3000);
+            }
+        });
+
+        // Add gradient animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes animate-gradient {
+                0%, 100% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+            }
+            .animate-gradient {
+                background-size: 200% 200%;
+                animation: animate-gradient 3s ease infinite;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // 3D tilt effect on cards
+        document.querySelectorAll('.cosmic-card-3d').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+            });
+        });
+    </script>
+
+</body>
+</html>
