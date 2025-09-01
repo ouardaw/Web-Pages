@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ouarda J Wilson - Product Manager Resume</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #0a0a0f;
+            background-image: 
+                radial-gradient(ellipse at 20% 30%, #1a0033 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, #001133 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, #0a0a1a 0%, #000000 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            print-color-adjust: exact;
+            -webkit-print-color-adjust: exact;
+        }
+        
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #fb923c, #9333ea, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-card {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.05), rgba(251, 146, 60, 0.03));
+            border: 1px solid rgba(147, 51, 234, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+        
+        .section-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(135deg, #9333ea, #fb923c, #3b82f6);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.3;
+        }
+        
+        .role-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: linear-gradient(135deg, rgba(251, 146, 60, 0.2), rgba(147, 51, 234, 0.2));
+            border: 1px solid rgba(251, 146, 60, 0.4);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #fbbf24;
+        }
+        
+        .skill-pill {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            margin: 0.25rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: #93c5fd;
+            transition: all 0.3s;
+        }
+        
+        .skill-pill:hover {
+            background: rgba(59, 130, 246, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        
+        .star {
+            position: fixed;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.8; }
+        }
+        
+        .nebula {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        a {
+            color: #fbbf24;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: #fb923c;
+            text-decoration: underline;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            .section-card {
+                border: 1px solid #ddd;
+                background: white;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+        
+        .highlight {
+            color: #fbbf24;
+            font-weight: 600;
+        }
+        
+        ul li::before {
+            content: "▸ ";
+            color: #fb923c;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="nebula" style="width: 400px; height: 400px; background: radial-gradient(circle, #9333ea, transparent); top: -200px; left: -200px;"></div>
+    <div class="nebula" style="width: 300px; height: 300px; background: radial-gradient(circle, #fb923c, transparent); bottom: -150px; right: -150px;"></div>
+    
+    <!-- Stars -->
+    <div class="no-print" id="stars-container"></div>
+    
+    <!-- Main Container -->
+    <div class="max-w-5xl mx-auto p-6 md:p-8 relative z-10">
+        
+        <!-- Header Section -->
+        <header class="text-center mb-10">
+            <h1 class="font-orbitron text-5xl md:text-6xl font-bold mb-2">
+                <span class="gradient-text">Ouarda J WILSON</span>
+            </h1>
+            <p class="text-xl text-orange-300 mb-4">Strategic Product Leader & Innovator</p>
+            <div class="flex flex-wrap justify-center gap-4 text-sm">
+                <span>📧 ouarda.jw@gmail.com</span>
+                <span>📱 (703) 725-7936</span>
+                <span>📍 Ashburn, VA</span>
+                <span>💼 <a href="https://www.linkedin.com/in/ouarda-j-1979648/" target="_blank">LinkedIn</a></span>
+                <span>🚀 <a href="https://ouardaw.github.io/Web-Pages/" target="_blank" class="text-orange-400">View Stellaris Live</a></span>
+            </div>
+        </header>
+        
+        <!-- Summary Section -->
+        <section class="section-card">
+            <h2 class="font-orbitron text-2xl gradient-text mb-4">SUMMARY</h2>
+            <p class="text-gray-300 leading-relaxed">
+                Strategic Product Leader with <span class="highlight">10+ years</span> driving <span class="highlight">$50M+ in revenue</span> across eCommerce, cloud, and SaaS platforms. 
+                Recently expanded technical expertise by building and launching <span class="highlight">Stellaris</span>, an AI-powered astronomy web application. 
+                Combines deep product strategy with hands-on development skills in Python, ML/AI, and API integration. 
+                Seeking high-impact PM roles in innovative tech organizations.
+            </p>
+        </section>
+        
+        <!-- Professional Experience Section -->
+        <section class="section-card">
+            <h2 class="font-orbitron text-2xl gradient-text mb-6">PROFESSIONAL EXPERIENCE</h2>
+            
+            <!-- Stellaris Project -->
+            <div class="mb-8">
+                <div class="flex flex-wrap justify-between items-start mb-2">
+                    <div>
+                        <h3 class="text-xl font-bold text-orange-300">Independent Technical Product Manager</h3>
+                        <p class="text-purple-300">Stellaris: AI-Powered Astronomy Application</p>
+                        
+                    </div>
+                    <div class="text-right">
+                        <span class="role-badge">Jan 2024 – Present</span>
+                        <p class="text-sm text-gray-400 mt-1">Ashburn, VA</p>
+                    </div>
+                </div>
+                <ul class="text-gray-300 space-y-2 mt-3">
+                    <li>Conceived, developed, and launched Stellaris, an astronomy web app for anyone curious about the night sky.</li>
+                    <li>Integrated several external APIs (NASA, OpenWeatherMap, OpenAI/ChatGPT via LangChain) with intelligent caching, reducing operational costs by <span class="highlight">60%</span></li>
+                    <li>Built an AI-powered Cosmic Oracle using LangChain and ChatGPT for conversational astronomy insights</li>
+                    <li>Implemented real-time celestial tracking using Python and Skyfield to compute planet visibility, moon phases, and ISS position, achieving response times under 3 seconds. <span class="highlight"><3 second response times</span></li>
+                    <li>Achieved <span class="highlight">99.5% uptime</span> through performance optimization and reliable Streamlit Cloud deployment</li>
+                    <li><strong>Tech Stack:</strong> Python, Streamlit, Plotly, LangChain, OpenAI API, REST APIs, GitHub</li>
+                </ul>
+            </div>
+            
+            <!-- Career Development -->
+            <div class="mb-8">
+                <div class="flex flex-wrap justify-between items-start mb-2">
+                    <div>
+                        <h3 class="text-xl font-bold text-orange-300">Professional Development & Family Commitments</h3>
+                        <p class="text-purple-300">Career Break</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="role-badge">Nov 2022 – Jan 2024</span>
+                        <p class="text-sm text-gray-400 mt-1">Ashburn, VA</p>
+                    </div>
+                </div>
+                <ul class="text-gray-300 space-y-2 mt-3">
+                    <li>Balanced family priorities while maintaining continuous professional development.</li>
+                    <li>Earned certifications in Machine Learning and AI (TensorFlow, IBM Generative AI)</li>
+                    <li>Completed intensive ML/Data Science bootcamp with hands-on Python projects</li>
+                    <li>Developed multiple data-driven applications expanding expertise in Python, ML/AI, and cloud technologies</li>
+         
+                </ul>
+            </div>
+            
+            <!-- OVHcloud -->
+            <div class="mb-8">
+                <div class="flex flex-wrap justify-between items-start mb-2">
+                    <div>
+                        <h3 class="text-xl font-bold text-orange-300">OVHcloud</h3>
+                        <p class="text-purple-300">Sr. Product Manager, eCommerce</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="role-badge">Apr 2018 – Nov 2022</span>
+                        <p class="text-sm text-gray-400 mt-1">Reston, VA</p>
+                    </div>
+                </div>
+                <ul class="text-gray-300 space-y-2 mt-3">
+                    <li>Led the launch of foundational cloud products, including dedicated servers, public/private cloud instances, VPS, and Kubernetes solutions generating <span class="highlight">$30M+ annual recurring revenue</span></li>
+                    <li>Optimized the digital sales funnel for complex server configurations, achieving <span class="highlight">10% conversion rate increase</span></li>
+                    <li>Owned full product lifecycle from roadmap planning through go-to-market across global teams</li>
+                    <li>Managed UAT processes, defined test scenarios, and validated releases in production environments</li>
+                    <li>Standardized product launch playbooks aligning deployment, QA, and go-live approvals globally</li>
+                </ul>
+            </div>
+            
+            <!-- Self-Employed -->
+            <div class="mb-8">
+                <div class="flex flex-wrap justify-between items-start mb-2">
+                    <div>
+                        <h3 class="text-xl font-bold text-orange-300">Self-Employed</h3>
+                        <p class="text-purple-300">Co-Founder</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="role-badge">Sep 2016 – Mar 2018</span>
+                        <p class="text-sm text-gray-400 mt-1">Ashburn, VA</p>
+                    </div>
+                </div>
+                <ul class="text-gray-300 space-y-2 mt-3">
+                    <li>Developed and launched a drop-shipping eCommerce website with automated inventory management systems, achieving a <span class="highlight">30% increase in conversion rates</span></li>
+                    <li>Co-developed and released a gaming app, LFGPLZ, while defining and implementing new features</li>
+                    <li>Executed marketing and promotional strategies for the LFGPLZ app on social media platforms</li>
+                </ul>
+            </div>
+            
+            <!-- Monster Government Solutions -->
+            <div class="mb-8">
+                <div class="flex flex-wrap justify-between items-start mb-2">
+                    <div>
+                        <h3 class="text-xl font-bold text-orange-300">Monster Government Solutions</h3>
+                        <p class="text-purple-300">Product Manager</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="role-badge">Oct 2015 – Nov 2016</span>
+                        <p class="text-sm text-gray-400 mt-1">McLean, VA</p>
+                    </div>
+                </div>
+                <ul class="text-gray-300 space-y-2 mt-3">
+                    <li>Led the enhancement of the Onboarding suite by incorporating new digital forms and personalized onboarding checklists, reducing onboarding time by at least <span class="highlight">15%</span></li>
+                    <li>Collaborated with cross-functional teams and collected feedback through sales/account managers, surveys, and user experiments, which led to the implementation of key product enhancements, increasing user engagement by <span class="highlight">25%</span></li>
+                    <li>Delivered training presentations to clients such as the IRS and Treasury, achieving a <span class="highlight">20% increase in customer satisfaction</span></li>
+                </ul>
+            </div>
+            
+            <!-- Lexmark -->
+            <div class="mb-8">
+                <div class="flex flex-wrap justify-between items-start mb-2">
+                    <div>
+                        <h3 class="text-xl font-bold text-orange-300">Lexmark</h3>
+                        <p class="text-purple-300">Product Manager</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="role-badge">Oct 2012 – Oct 2015</span>
+                        <p class="text-sm text-gray-400 mt-1">Ashburn, VA</p>
+                    </div>
+                </div>
+                <ul class="text-gray-300 space-y-2 mt-3">
+                    <li>Streamlined the end-to-end development process for the Invoices, Remittances, and Transcripts solutions, leading to a <span class="highlight">30% reduction in time-to-market</span> and driving a <span class="highlight">15% increase in customer satisfaction and retention</span></li>
+                    <li>Launched an automated Remittance solution for a major US bank, reducing processing time by <span class="highlight">40%</span></li>
+                    <li>Conducted focus groups and experiments to gather user feedback, driving key product enhancements</li>
+                </ul>
+            </div>
+            
+            <!-- PSA Peugeot-Citroen -->
+            <div class="mb-8">
+                <div class="flex flex-wrap justify-between items-start mb-2">
+                    <div>
+                        <h3 class="text-xl font-bold text-orange-300">PSA Peugeot-Citroen</h3>
+                        <p class="text-purple-300">Product Owner (Contract via Alpha Technologie)</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="role-badge">Mar 2010 – Dec 2011</span>
+                        <p class="text-sm text-gray-400 mt-1">Paris, France</p>
+                    </div>
+                </div>
+                <ul class="text-gray-300 space-y-2 mt-3">
+                    <li>Deployed two web solutions with CMS applications across <span class="highlight">19 European branches</span>, enhancing brand reach and enabling online vehicle inventory management</li>
+                    <li>Developed customized solutions through comprehensive needs assessments, resulting in increased customer satisfaction scores across all subsidiaries</li>
+                    <li>Integrated market analysis and stakeholder input to create strategic roadmaps, accelerating time-to-market by <span class="highlight">20%</span></li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Skills Section -->
+        <section class="section-card">
+            <h2 class="font-orbitron text-2xl gradient-text mb-4">SKILLS</h2>
+            
+            <div class="mb-4">
+                <h3 class="text-lg font-semibold text-purple-300 mb-2">Product Management</h3>
+                <div class="flex flex-wrap">
+                    <span class="skill-pill">Strategy & Roadmapping</span>
+                    <span class="skill-pill">Agile/Scrum/Lean</span>
+                    <span class="skill-pill">User Stories</span>
+                    <span class="skill-pill">Product Discovery</span>
+                    <span class="skill-pill">UAT</span>
+                    <span class="skill-pill">UI/UX Design</span>
+                    <span class="skill-pill">Leadership</span>
+                    <span class="skill-pill">E-Commerce</span>
+                    <span class="skill-pill">Market Research</span>
+                </div>
+            </div>
+            
+            <div class="mb-4">
+                <h3 class="text-lg font-semibold text-purple-300 mb-2">Technical Stack</h3>
+                <div class="flex flex-wrap">
+                    <span class="skill-pill">Python (Pandas, NumPy, Scikit-Learn)</span>
+                    <span class="skill-pill">LangChain</span>
+                    <span class="skill-pill">API Integration</span>
+                    <span class="skill-pill">Streamlit</span>
+                    <span class="skill-pill">Plotly</span>
+                    <span class="skill-pill">SQL</span>
+                    <span class="skill-pill">TensorFlow</span>
+                    <span class="skill-pill">Kubernetes</span>
+                    <span class="skill-pill">GitHub</span>
+                </div>
+            </div>
+            
+            <div class="mb-4">
+                <h3 class="text-lg font-semibold text-purple-300 mb-2">Data & Analytics</h3>
+                <div class="flex flex-wrap">
+                    <span class="skill-pill">Tableau</span>
+                    <span class="skill-pill">Google Analytics</span>
+                    <span class="skill-pill">Jupyter Notebook</span>
+                    <span class="skill-pill">Data Visualization</span>
+                    <span class="skill-pill">A/B Testing</span>
+                    <span class="skill-pill">Data Analysis</span>
+                </div>
+            </div>
+            
+            <div class="mb-4">
+                <h3 class="text-lg font-semibold text-purple-300 mb-2">Tools & Platforms</h3>
+                <div class="flex flex-wrap">
+                    <span class="skill-pill">JIRA</span>
+                    <span class="skill-pill">Confluence</span>
+                    <span class="skill-pill">Rally</span>
+                    <span class="skill-pill">Figma</span>
+                    <span class="skill-pill">Balsamiq</span>
+                    <span class="skill-pill">Shopify</span>
+                    <span class="skill-pill">GCP</span>
+                    <span class="skill-pill">Google Colab</span>
+                    <span class="skill-pill">ChatGPT/OpenAI API</span>
+                    <span class="skill-pill">Claude AI</span>
+                    <span class="skill-pill">Prompt Engineering</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Education & Certifications -->
+        <section class="section-card">
+            <h2 class="font-orbitron text-2xl gradient-text mb-4">EDUCATION & CERTIFICATIONS</h2>
+            
+            <div class="mb-4">
+                <h3 class="text-lg font-semibold text-orange-300">Education</h3>
+                <p class="text-gray-300">ISGA (Institut Supérieur d'Ingénierie et des Affaires)</p>
+                <p class="text-sm text-gray-400">BSc, Software Engineering & Technology Management</p>
+            </div>
+            
+            <div>
+                <h3 class="text-lg font-semibold text-orange-300 mb-2">Certifications</h3>
+                <ul class="text-gray-300 space-y-1">
+                    <li>IBM (2025) – Generative AI for Product Managers</li>
+                    <li>Coursera (2023) – TensorFlow for AI, ML, and Deep Learning</li>
+                    <li>Udemy (2023) – Complete Machine Learning & Data Science Bootcamp</li>
+                    <li>Scrum Alliance (2016) – Certified Scrum Product Owner</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Languages -->
+        <section class="section-card">
+            <h2 class="font-orbitron text-2xl gradient-text mb-4">LANGUAGES</h2>
+            <p class="text-gray-300">English, French, Arabic (Fluent)</p>
+        </section>
+    </div>
+    
+    <script>
+        // Generate random stars
+        const starsContainer = document.getElementById('stars-container');
+        if (starsContainer) {
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const size = Math.random() * 2 + 0.5;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                star.style.animationDelay = `${Math.random() * 3}s`;
+                starsContainer.appendChild(star);
+            }
+        }
+    </script>
+</body>
+</html>
