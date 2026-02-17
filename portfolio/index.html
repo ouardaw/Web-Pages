@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ouarda J Wilson — Product Manager | Founder | Quantum Advocate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ========== RESET & BASE ========== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-deep: #050816;
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #0d1224;
+            --bg-card: rgba(15, 23, 55, 0.6);
+            --bg-card-solid: #0f1737;
+            --accent: #7c3aed;
+            --accent-light: #a78bfa;
+            --accent-glow: rgba(124, 58, 237, 0.15);
+            --accent-secondary: #f97316;
+            --accent-warm: #fb923c;
+            --cyan: #06b6d4;
+            --cyan-glow: rgba(6, 182, 212, 0.15);
+            --purple-glow: rgba(124, 58, 237, 0.08);
+            --orange-glow: rgba(249, 115, 22, 0.12);
+            --text-primary: #e8e6f0;
+            --text-secondary: #9ca3c2;
+            --text-muted: #5b6388;
+            --border: rgba(124, 58, 237, 0.1);
+            --border-glow: rgba(124, 58, 237, 0.25);
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ========== STARS BACKGROUND ========== */
+        .stars {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .stars-layer {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-repeat: repeat;
+        }
+
+        .stars-sm {
+            background-image: radial-gradient(1px 1px at 50px 80px, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1px 1px at 150px 200px, rgba(255,255,255,0.3), transparent),
+                radial-gradient(1px 1px at 300px 50px, rgba(255,255,255,0.5), transparent),
+                radial-gradient(1px 1px at 400px 300px, rgba(255,255,255,0.25), transparent),
+                radial-gradient(1px 1px at 500px 120px, rgba(255,255,255,0.35), transparent),
+                radial-gradient(1px 1px at 80px 350px, rgba(255,255,255,0.3), transparent),
+                radial-gradient(1px 1px at 250px 400px, rgba(255,255,255,0.2), transparent),
+                radial-gradient(1px 1px at 600px 250px, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1px 1px at 700px 100px, rgba(255,255,255,0.3), transparent),
+                radial-gradient(1px 1px at 350px 450px, rgba(255,255,255,0.35), transparent);
+            background-size: 800px 500px;
+            animation: twinkle1 8s ease-in-out infinite alternate;
+        }
+
+        .stars-md {
+            background-image: radial-gradient(1.5px 1.5px at 100px 150px, rgba(200,180,255,0.5), transparent),
+                radial-gradient(1.5px 1.5px at 450px 280px, rgba(200,180,255,0.4), transparent),
+                radial-gradient(1.5px 1.5px at 200px 380px, rgba(180,200,255,0.5), transparent),
+                radial-gradient(1.5px 1.5px at 550px 50px, rgba(255,200,150,0.4), transparent),
+                radial-gradient(1.5px 1.5px at 650px 350px, rgba(200,180,255,0.35), transparent),
+                radial-gradient(1.5px 1.5px at 30px 250px, rgba(255,220,180,0.3), transparent);
+            background-size: 700px 450px;
+            animation: twinkle2 12s ease-in-out infinite alternate;
+        }
+
+        .stars-lg {
+            background-image: radial-gradient(2px 2px at 250px 100px, rgba(167,139,250,0.6), transparent),
+                radial-gradient(2px 2px at 500px 400px, rgba(6,182,212,0.5), transparent),
+                radial-gradient(2.5px 2.5px at 100px 300px, rgba(249,115,22,0.4), transparent);
+            background-size: 600px 500px;
+            animation: twinkle3 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes twinkle1 { 0% { opacity: 0.6; } 100% { opacity: 1; } }
+        @keyframes twinkle2 { 0% { opacity: 0.4; } 100% { opacity: 0.9; } }
+        @keyframes twinkle3 { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+
+        /* ========== NAV ========== */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(5, 8, 22, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .nav-inner {
+            max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+            display: flex; justify-content: space-between; align-items: center; height: 64px;
+        }
+
+        nav .nav-logo {
+            font-family: var(--font-display); font-weight: 700; font-size: 1.2rem;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent-secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav .nav-links { display: flex; gap: 2rem; }
+
+        nav .nav-links a {
+            color: var(--text-secondary); text-decoration: none; font-size: 0.85rem;
+            font-weight: 500; letter-spacing: 0.02em; transition: color 0.2s;
+        }
+
+        nav .nav-links a:hover { color: var(--accent-light); }
+
+        .mobile-menu-btn {
+            display: none; background: none; border: none; color: var(--text-primary);
+            font-size: 1.5rem; cursor: pointer;
+        }
+
+        /* ========== SECTIONS ========== */
+        section { padding: 6rem 2rem; position: relative; z-index: 1; }
+
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        .section-label {
+            font-family: var(--font-display); font-size: 0.75rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.2em;
+            background: linear-gradient(90deg, var(--accent-light), var(--cyan));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display); font-size: 2.2rem; font-weight: 700;
+            letter-spacing: -0.02em; margin-bottom: 1rem; color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem; color: var(--text-secondary);
+            max-width: 600px; line-height: 1.7; margin-bottom: 3rem;
+        }
+
+        /* ========== HERO ========== */
+        #hero {
+            min-height: 100vh; display: flex; align-items: center;
+            position: relative; overflow: hidden; padding-top: 64px;
+        }
+
+        .hero-nebula {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 70% 20%, rgba(124, 58, 237, 0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 20% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 50% 50%, rgba(249, 115, 22, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content { position: relative; z-index: 1; }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-glow), var(--cyan-glow));
+            border: 1px solid var(--border-glow); border-radius: 100px;
+            padding: 0.4rem 1.2rem; font-size: 0.8rem; font-weight: 500;
+            color: var(--accent-light); margin-bottom: 2rem;
+        }
+
+        .hero-badge .dot {
+            width: 6px; height: 6px; background: var(--accent-secondary);
+            border-radius: 50%; animation: pulse 2s infinite;
+            box-shadow: 0 0 8px var(--accent-secondary);
+        }
+
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+        .hero-name {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-name .gradient-text {
+            background: linear-gradient(135deg, #e8e6f0 0%, #a78bfa 50%, #f97316 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-tagline {
+            font-size: 1.15rem; color: var(--text-secondary);
+            max-width: 580px; line-height: 1.7; margin-bottom: 2.5rem;
+        }
+
+        .hero-tagline strong { color: var(--text-primary); font-weight: 600; }
+
+        .hero-stats {
+            display: flex; gap: 3rem; margin-bottom: 2.5rem; flex-wrap: wrap;
+        }
+
+        .hero-stat .number {
+            font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent-secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-stat .label {
+            font-size: 0.8rem; color: var(--text-muted); font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.05em;
+        }
+
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.75rem 1.5rem; border-radius: 8px; font-size: 0.9rem;
+            font-weight: 500; text-decoration: none; transition: all 0.3s ease;
+            cursor: pointer; border: none; font-family: var(--font-body);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #9333ea);
+            color: #fff; position: relative; overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, #9333ea, var(--accent-secondary));
+            opacity: 0; transition: opacity 0.3s;
+        }
+
+        .btn-primary:hover::before { opacity: 1; }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 25px rgba(124, 58, 237, 0.4);
+        }
+
+        .btn-primary span { position: relative; z-index: 1; }
+
+        .btn-secondary {
+            background: rgba(124, 58, 237, 0.08);
+            color: var(--text-secondary); border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--border-glow); color: var(--accent-light);
+            background: rgba(124, 58, 237, 0.12);
+        }
+
+        /* ========== ABOUT ========== */
+        #about {
+            background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(124, 58, 237, 0.04) 0%, transparent 70%);
+        }
+
+        .about-grid {
+            display: grid; grid-template-columns: 1fr;
+            gap: 2rem; align-items: center;
+            max-width: 800px;
+        }
+
+        .about-photo-wrapper { position: relative; }
+
+        .about-photo {
+            width: 100%; aspect-ratio: 3/4; border-radius: 16px;
+            overflow: hidden; position: relative;
+            border: 2px solid var(--border-glow);
+            box-shadow: 0 0 40px rgba(124, 58, 237, 0.15);
+        }
+
+        .about-photo img {
+            width: 100%; height: 100%; object-fit: cover; object-position: center top;
+        }
+
+        .about-photo .placeholder {
+            width: 100%; height: 100%; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            background: linear-gradient(135deg, var(--bg-card-solid), rgba(124,58,237,0.1));
+            color: var(--text-muted); font-size: 0.85rem; text-align: center; padding: 1rem;
+        }
+
+        .about-photo .placeholder .initials {
+            font-family: var(--font-display); font-size: 4rem; font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent-secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; margin-bottom: 0.5rem; opacity: 0.4;
+        }
+
+        .about-text p {
+            color: var(--text-secondary); margin-bottom: 1.25rem;
+            font-size: 1rem; line-height: 1.8;
+        }
+
+        .about-text p strong { color: var(--text-primary); font-weight: 600; }
+
+        .about-highlights {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 0.75rem; margin-top: 2rem;
+        }
+
+        .about-highlight {
+            display: flex; align-items: center; gap: 0.6rem;
+            font-size: 0.88rem; color: var(--text-secondary);
+        }
+
+        .about-highlight .icon {
+            width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent-secondary));
+            box-shadow: 0 0 6px rgba(124, 58, 237, 0.4);
+        }
+
+        /* ========== EXPERIENCE ========== */
+        #experience {
+            background: radial-gradient(ellipse 60% 40% at 80% 50%, rgba(6, 182, 212, 0.03) 0%, transparent 60%);
+        }
+
+        .timeline-item {
+            display: grid; grid-template-columns: 200px 1fr;
+            gap: 2rem; padding: 2rem 0;
+            border-bottom: 1px solid var(--border); transition: all 0.2s ease;
+        }
+
+        .timeline-item:last-child { border-bottom: none; }
+
+        .timeline-item:hover {
+            background: rgba(124, 58, 237, 0.02);
+            border-radius: 8px; padding-left: 1rem; margin-left: -1rem;
+        }
+
+        .timeline-date {
+            font-size: 0.85rem; color: var(--text-muted);
+            font-weight: 500; padding-top: 0.2rem;
+        }
+
+        .timeline-content h3 {
+            font-family: var(--font-display); font-size: 1.1rem;
+            font-weight: 600; margin-bottom: 0.25rem; color: var(--text-primary);
+        }
+
+        .timeline-content .company {
+            font-size: 0.95rem; color: var(--accent-light);
+            font-weight: 500; margin-bottom: 0.5rem;
+        }
+
+        .timeline-content .location {
+            font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;
+        }
+
+        .timeline-content ul { list-style: none; padding: 0; }
+
+        .timeline-content ul li {
+            position: relative; padding-left: 1.2rem; margin-bottom: 0.4rem;
+            font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;
+        }
+
+        .timeline-content ul li::before {
+            content: ''; position: absolute; left: 0; top: 0.6em;
+            width: 5px; height: 5px; border-radius: 50;
+            background: var(--accent); opacity: 0.6;
+        }
+
+        .tag {
+            display: inline-block; padding: 0.2rem 0.6rem; font-size: 0.7rem;
+            font-weight: 500; border-radius: 4px; margin-right: 0.4rem; margin-top: 0.5rem;
+        }
+
+        .tag-purple { background: var(--accent-glow); color: var(--accent-light); }
+        .tag-cyan { background: var(--cyan-glow); color: var(--cyan); }
+        .tag-orange { background: var(--orange-glow); color: var(--accent-secondary); }
+
+        /* ========== PROJECTS ========== */
+        #projects {
+            background: radial-gradient(ellipse 70% 50% at 30% 50%, rgba(124, 58, 237, 0.04) 0%, transparent 60%);
+        }
+
+        .projects-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 16px; overflow: hidden; transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .project-card:hover {
+            border-color: var(--border-glow); transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.15);
+        }
+
+        .project-card.featured {
+            grid-column: 1 / -1;
+            display: grid; grid-template-columns: 1.2fr 1fr;
+        }
+
+        .project-img {
+            width: 100%; aspect-ratio: 16/10; overflow: hidden;
+            background: var(--bg-card-solid);
+        }
+
+        .project-img img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-img img { transform: scale(1.03); }
+
+        .project-card.featured .project-img { aspect-ratio: auto; height: 100%; }
+
+        .project-body { padding: 1.5rem; }
+
+        .project-body h3 {
+            font-family: var(--font-display); font-size: 1.15rem;
+            font-weight: 600; margin-bottom: 0.25rem; color: var(--text-primary);
+        }
+
+        .project-type {
+            font-size: 0.8rem; font-weight: 500; margin-bottom: 0.75rem;
+        }
+
+        .project-type.purple { color: var(--accent-light); }
+        .project-type.orange { color: var(--accent-secondary); }
+        .project-type.cyan { color: var(--cyan); }
+
+        .project-body p {
+            font-size: 0.9rem; color: var(--text-secondary);
+            line-height: 1.7; margin-bottom: 1.25rem;
+        }
+
+        .project-tech {
+            display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem;
+        }
+
+        .project-tech span {
+            font-size: 0.7rem; padding: 0.2rem 0.6rem;
+            background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border);
+            border-radius: 4px; color: var(--text-muted); font-weight: 500;
+        }
+
+        .project-links { display: flex; gap: 0.75rem; }
+
+        .project-link {
+            font-size: 0.8rem; text-decoration: none; font-weight: 500;
+            display: flex; align-items: center; gap: 0.3rem; transition: color 0.2s;
+        }
+
+        .project-link.purple { color: var(--accent-light); }
+        .project-link.purple:hover { color: #c4b5fd; }
+        .project-link.orange { color: var(--accent-secondary); }
+        .project-link.orange:hover { color: var(--accent-warm); }
+        .project-link.cyan { color: var(--cyan); }
+        .project-link.cyan:hover { color: #22d3ee; }
+
+        .project-link .arrow { transition: transform 0.2s; }
+        .project-link:hover .arrow { transform: translateX(3px); }
+
+        /* ========== WRITING / MEDIUM ========== */
+        #writing {
+            background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(249, 115, 22, 0.04) 0%, transparent 60%);
+        }
+
+        .article-card {
+            display: grid; grid-template-columns: 1fr 1.5fr;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 16px; overflow: hidden; transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .article-card:hover {
+            border-color: var(--border-glow); transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.12);
+        }
+
+        .article-img {
+            background: linear-gradient(135deg, var(--bg-card-solid), rgba(124,58,237,0.15));
+            display: flex; align-items: center; justify-content: center;
+            padding: 2rem; min-height: 200px;
+        }
+
+        .article-img .medium-icon {
+            font-size: 4rem; opacity: 0.3;
+        }
+
+        .article-body {
+            padding: 2rem; display: flex; flex-direction: column; justify-content: center;
+        }
+
+        .article-body .article-source {
+            font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--accent-secondary); margin-bottom: 0.5rem;
+        }
+
+        .article-body h3 {
+            font-family: var(--font-display); font-size: 1.2rem;
+            font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .article-body p {
+            font-size: 0.9rem; color: var(--text-secondary);
+            line-height: 1.7; margin-bottom: 1.25rem;
+        }
+
+        /* ========== SKILLS ========== */
+        #skills {
+            background: radial-gradient(ellipse 80% 50% at 50% 50%, rgba(6, 182, 212, 0.03) 0%, transparent 60%);
+        }
+
+        .skills-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+        }
+
+        .skill-group {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 12px; padding: 1.75rem; transition: all 0.2s;
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-group:hover { border-color: var(--border-glow); }
+
+        .skill-group h3 {
+            font-family: var(--font-display); font-size: 0.9rem;
+            font-weight: 600; margin-bottom: 1rem; color: var(--text-primary);
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+
+        .skill-group .skill-icon { font-size: 1.1rem; }
+
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+        .skill-tags span {
+            font-size: 0.8rem; padding: 0.35rem 0.75rem;
+            background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border);
+            border-radius: 6px; color: var(--text-secondary);
+            font-weight: 400; transition: all 0.2s;
+        }
+
+        .skill-tags span:hover {
+            border-color: var(--border-glow); background: var(--accent-glow);
+            color: var(--accent-light);
+        }
+
+        /* ========== CERTIFICATIONS ========== */
+        #certifications {
+            background: radial-gradient(ellipse 60% 40% at 20% 50%, rgba(249, 115, 22, 0.03) 0%, transparent 60%);
+        }
+
+        .certs-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .cert-item {
+            display: flex; align-items: flex-start; gap: 1rem; padding: 1.25rem;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 10px; transition: border-color 0.2s;
+            backdrop-filter: blur(10px);
+        }
+
+        .cert-item:hover { border-color: var(--border-glow); }
+
+        .cert-icon {
+            width: 40px; height: 40px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; font-size: 1.1rem;
+        }
+
+        .cert-icon.purple { background: var(--accent-glow); }
+        .cert-icon.cyan { background: var(--cyan-glow); }
+        .cert-icon.orange { background: var(--orange-glow); }
+
+        .cert-info h4 {
+            font-size: 0.9rem; font-weight: 600;
+            color: var(--text-primary); margin-bottom: 0.15rem;
+        }
+
+        .cert-info .cert-issuer { font-size: 0.8rem; color: var(--text-muted); }
+        .cert-info .cert-year { font-size: 0.75rem; color: var(--accent-light); font-weight: 500; }
+
+        /* ========== EDUCATION ========== */
+        .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+        .edu-card {
+            padding: 2rem; background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 12px; backdrop-filter: blur(10px);
+        }
+
+        .edu-card h3 {
+            font-family: var(--font-display); font-size: 1.1rem;
+            font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;
+        }
+
+        .edu-card .degree { font-size: 0.9rem; color: var(--accent-light); margin-bottom: 0.5rem; }
+        .edu-card .edu-location { font-size: 0.85rem; color: var(--text-muted); }
+
+        /* ========== CONTACT ========== */
+        #contact { text-align: center; }
+
+        .contact-content { max-width: 600px; margin: 0 auto; }
+        .contact-content .section-subtitle { margin-left: auto; margin-right: auto; }
+
+        .contact-form {
+            display: flex; flex-direction: column; gap: 1rem;
+            text-align: left; margin-bottom: 2.5rem;
+        }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%; padding: 0.85rem 1rem;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 8px; color: var(--text-primary);
+            font-family: var(--font-body); font-size: 0.9rem;
+            transition: border-color 0.2s; outline: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus { border-color: var(--accent); }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder { color: var(--text-muted); }
+
+        .contact-form textarea { resize: vertical; min-height: 120px; }
+
+        .contact-form .btn-primary { align-self: flex-start; padding: 0.85rem 2.5rem; }
+
+        .contact-socials { display: flex; justify-content: center; gap: 1rem; }
+
+        .social-link {
+            display: flex; align-items: center; gap: 0.5rem;
+            padding: 0.6rem 1.2rem; background: var(--bg-card);
+            border: 1px solid var(--border); border-radius: 8px;
+            color: var(--text-secondary); text-decoration: none;
+            font-size: 0.85rem; font-weight: 500; transition: all 0.2s;
+        }
+
+        .social-link:hover { border-color: var(--border-glow); color: var(--accent-light); }
+
+        /* ========== FOOTER ========== */
+        footer {
+            text-align: center; padding: 2rem; position: relative; z-index: 1;
+            border-top: 1px solid var(--border);
+        }
+
+        footer p { font-size: 0.8rem; color: var(--text-muted); }
+
+        /* ========== DIVIDER ========== */
+        .cosmic-divider {
+            height: 1px; border: none; position: relative; z-index: 1;
+            background: linear-gradient(90deg, transparent, var(--accent), var(--cyan), var(--accent-secondary), transparent);
+            opacity: 0.3; margin: 0;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        .fade-in {
+            opacity: 0; transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            section { padding: 4rem 1.5rem; }
+            nav .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .about-highlights { grid-template-columns: 1fr; }
+            .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .project-card.featured { grid-template-columns: 1fr; }
+            .article-card { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .edu-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .hero-stats { gap: 2rem; }
+            .contact-socials { flex-wrap: wrap; justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-name { font-size: 2.2rem; }
+            .section-title { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== STARS ========== -->
+<div class="stars">
+    <div class="stars-layer stars-sm"></div>
+    <div class="stars-layer stars-md"></div>
+    <div class="stars-layer stars-lg"></div>
+</div>
+
+<!-- ========== NAV ========== -->
+<nav>
+    <div class="nav-inner">
+        <div class="nav-logo">OW</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#writing">Writing</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('show')">&#9776;</button>
+    </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section id="hero">
+    <div class="hero-nebula"></div>
+    <div class="container hero-content">
+        <div class="hero-badge">
+            <span class="dot"></span>
+            Open to new opportunities
+        </div>
+        <h1 class="hero-name">
+            <span class="gradient-text">Ouarda J Wilson.</span>
+        </h1>
+        <p class="hero-tagline">
+            <strong>Senior Product Manager</strong> with 10+ years shipping cloud and enterprise products.
+            <strong>Founder</strong> of Orion Ascend. <strong>IBM Qiskit Advocate</strong> exploring quantum computing and ML.
+        </p>
+        <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary"><span>Get in Touch &rarr;</span></a>
+            <a href="#projects" class="btn btn-secondary">View Projects</a>
+            <a href="https://www.linkedin.com/in/ouarda-jw/" class="btn btn-secondary" target="_blank">LinkedIn</a>
+        </div>
+    </div>
+</section>
+
+<hr class="cosmic-divider">
+
+<!-- ========== ABOUT ========== -->
+<section id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-text fade-in">
+                <div class="section-label">About</div>
+                <h2 class="section-title">Product leader with a builder's mindset</h2>
+                <p>
+                    I started my career back in 2007 as a software engineer, which means I've spent close to two decades in tech, the last ten focused on product management. I've shipped <strong>cloud infrastructure products at OVHcloud</strong>, <strong>government solutions at Monster</strong>, and <strong>enterprise automation at Lexmark</strong>. My first product role was at <strong>PSA Peugeot-Citro&euml;n</strong> in Paris, where I deployed web solutions across 19 European branches.
+                </p>
+                <p>
+                    In 2025, I founded <strong>Orion Ascend</strong> to help small businesses unlock growth through digital tools, automation, and AI-powered opportunity analysis. I also build things on the side &mdash; from astronomy web apps to quantum ML benchmarks &mdash; because I genuinely can't stop tinkering.
+                </p>
+                <p>
+                    As an <strong>IBM Qiskit Advocate</strong>, I'm exploring where quantum computing, machine learning, and product strategy intersect. It's early, it's exciting, and I think product thinking has a real role to play in making quantum useful.
+                </p>
+                <p>
+                    When I'm not working, I love reading about space and astrophysics, listening to science podcasts, playing adventure video games, and diving into sci-fi books. Currently based in <strong>Ashburn, VA</strong>.
+                </p>
+                <div class="about-highlights">
+                    <div class="about-highlight"><span class="icon"></span> Ashburn, Virginia</div>
+                    <div class="about-highlight"><span class="icon"></span> BS Software Engineering</div>
+                    <div class="about-highlight"><span class="icon"></span> IBM Qiskit Advocate</div>
+                    <div class="about-highlight"><span class="icon"></span> Founder, Orion Ascend</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="cosmic-divider">
+
+<!-- ========== EXPERIENCE ========== -->
+<section id="experience">
+    <div class="container">
+        <div class="section-label fade-in">Experience</div>
+        <h2 class="section-title fade-in">Where I've made an impact</h2>
+        <p class="section-subtitle fade-in">From Paris to Virginia &mdash; building products across cloud, government, automotive, and emerging tech.</p>
+
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">Jan 2026 &mdash; Present</div>
+                <div class="timeline-content">
+                    <h3>Qiskit Advocate</h3>
+                    <div class="company">IBM (Volunteer / Community Program)</div>
+                    <ul>
+                        <li>Developing skills in quantum computing, community building, and leadership</li>
+                        <li>Contributing to the growth of the quantum computing community</li>
+                    </ul>
+                    <span class="tag tag-purple">Quantum</span>
+                    <span class="tag tag-cyan">Community</span>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">Nov 2025 &mdash; Present</div>
+                <div class="timeline-content">
+                    <h3>Founder & Consultant</h3>
+                    <div class="company">Orion Ascend</div>
+                    <div class="location">Ashburn, VA</div>
+                    <ul>
+                        <li>Built an opportunity agent that analyzes small business websites, digital presence, social media, and customer reviews to identify automation opportunities</li>
+                        <li>Providing small service businesses with prioritized roadmaps, tool recommendations, and implementation plans</li>
+                    </ul>
+                    <span class="tag tag-orange">AI Agents</span>
+                    <span class="tag tag-purple">Consulting</span>
+                    <span class="tag tag-cyan">Automation</span>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">Jan 2024 &mdash; Present</div>
+                <div class="timeline-content">
+                    <h3>Independent Product Builder</h3>
+                    <div class="company">Professional Development & Technical Projects</div>
+                    <div class="location">Ashburn, VA</div>
+                    <ul>
+                        <li>Built Stellaris &mdash; a production astronomy web app with AI-powered Q&A using LangChain and ChatGPT API</li>
+                        <li>Developed quantum vs. classical ML benchmark on 1,072 PLAsTiCC supernova samples</li>
+                        <li>Completed certifications in IBM Quantum, ML, TensorFlow, and Generative AI</li>
+                    </ul>
+                    <span class="tag tag-purple">Python</span>
+                    <span class="tag tag-orange">LangChain</span>
+                    <span class="tag tag-cyan">Qiskit</span>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">Apr 2018 &mdash; Nov 2022</div>
+                <div class="timeline-content">
+                    <h3>Sr Product Manager, eCommerce</h3>
+                    <div class="company">OVHcloud US</div>
+                    <div class="location">Reston, VA</div>
+                    <ul>
+                        <li>Led launch of cloud products (dedicated servers, public/private cloud, VPS, Kubernetes) generating $30M+ ARR</li>
+                        <li>Optimized online ordering for complex server configurations &mdash; 10% conversion rate increase</li>
+                        <li>Drove end-to-end execution from roadmap through launch with global teams</li>
+                        <li>Standardized product launch playbooks across global teams</li>
+                    </ul>
+                    <span class="tag tag-cyan">Cloud</span>
+                    <span class="tag tag-purple">eCommerce</span>
+                    <span class="tag tag-orange">$30M+ ARR</span>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">Oct 2015 &mdash; Nov 2016</div>
+                <div class="timeline-content">
+                    <h3>Product Manager</h3>
+                    <div class="company">Monster Government Solutions</div>
+                    <div class="location">McLean, VA</div>
+                    <ul>
+                        <li>Led enhancements to onboarding suite &mdash; digital forms and personalized checklists &mdash; reducing onboarding time by 15%+</li>
+                        <li>Delivered client training for the IRS and U.S. Treasury</li>
+                    </ul>
+                    <span class="tag tag-cyan">GovTech</span>
+                    <span class="tag tag-purple">Onboarding</span>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">Oct 2012 &mdash; Oct 2015</div>
+                <div class="timeline-content">
+                    <h3>Product Manager</h3>
+                    <div class="company">Lexmark</div>
+                    <div class="location">Ashburn, VA</div>
+                    <ul>
+                        <li>Streamlined development for Invoices, Remittances, and Transcripts solutions &mdash; 30% faster time to market</li>
+                        <li>Launched automated remittance solution for a major U.S. bank &mdash; 40% processing time reduction</li>
+                    </ul>
+                    <span class="tag tag-orange">Enterprise</span>
+                    <span class="tag tag-purple">Automation</span>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">Mar 2010 &mdash; Dec 2011</div>
+                <div class="timeline-content">
+                    <h3>Product Owner</h3>
+                    <div class="company">PSA Peugeot-Citro&euml;n</div>
+                    <div class="location">Paris, France</div>
+                    <ul>
+                        <li>Deployed two web solutions with CMS across 19 European branches</li>
+                        <li>Accelerated time to market by 20% through strategic roadmaps</li>
+                    </ul>
+                    <span class="tag tag-cyan">Automotive</span>
+                    <span class="tag tag-purple">CMS</span>
+                    <span class="tag tag-orange">Europe</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="cosmic-divider">
+
+<!-- ========== PROJECTS ========== -->
+<section id="projects">
+    <div class="container">
+        <div class="section-label fade-in">Projects & Ventures</div>
+        <h2 class="section-title fade-in">What I'm building</h2>
+        <p class="section-subtitle fade-in">Side projects, ventures, and technical experiments at the intersection of product, AI, and quantum computing.</p>
+
+        <div class="projects-grid">
+            <!-- STELLARIS — Featured -->
+            <div class="project-card featured fade-in">
+                <div class="project-img">
+                    <img src="images/stellaris-landing.png" alt="Stellaris - Cosmic Night Sky Agent">
+                </div>
+                <div class="project-body">
+                    <h3>Stellaris</h3>
+                    <div class="project-type purple">Production Web App</div>
+                    <p>AI-powered astronomy app with real-time Q&A agent. Integrates NASA, ISS, and weather APIs. Intelligent caching strategy reduced operational costs by 60%.</p>
+                    <div class="project-tech">
+                        <span>Python</span>
+                        <span>LangChain</span>
+                        <span>ChatGPT API</span>
+                        <span>Streamlit</span>
+                        <span>NASA API</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://ouardaw.github.io/Web-Pages/" class="project-link purple" target="_blank">Live App <span class="arrow">&rarr;</span></a>
+                        <a href="https://github.com/ouardaw/Cosmic-Night-Agent" class="project-link cyan" target="_blank">GitHub <span class="arrow">&rarr;</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ORION ASCEND -->
+            <div class="project-card fade-in">
+                <div class="project-img">
+                    <img src="images/orion-banner.png" alt="Orion Ascend">
+                </div>
+                <div class="project-body">
+                    <h3>Orion Ascend</h3>
+                    <div class="project-type orange">Business / Consulting</div>
+                    <p>Consulting firm helping small businesses optimize operations through digital tools, automation, and AI-powered opportunity analysis.</p>
+                    <div class="project-tech">
+                        <span>AI Agents</span>
+                        <span>Automation</span>
+                        <span>Digital Strategy</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://orionascend.com" class="project-link orange" target="_blank">orionascend.com <span class="arrow">&rarr;</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUANTUM VS CLASSICAL -->
+            <div class="project-card fade-in">
+                <div class="project-img" style="display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, #0f1737, rgba(124,58,237,0.15));">
+                    <div style="text-align:center; padding: 1.5rem;">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">&#9883;</div>
+                        <div style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-light);">Quantum AUC: 0.602</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">vs Classical: 0.638</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.3rem;">1,072 supernova samples</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <h3>Quantum vs Classical ML</h3>
+                    <div class="project-type cyan">Research / Open Source</div>
+                    <p>Benchmarked quantum vs classical ML on PLAsTiCC supernova samples. Published on Medium and open-sourced on GitHub.</p>
+                    <div class="project-tech">
+                        <span>Qiskit</span>
+                        <span>Scikit-learn</span>
+                        <span>Python</span>
+                        <span>PLAsTiCC</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://medium.com/@ouarda.jw/a-pms-journey-into-quantum-ml-what-i-learned-classifying-1-072-supernovae-39a4b91ce5ed" class="project-link orange" target="_blank">Medium <span class="arrow">&rarr;</span></a>
+                        <a href="https://github.com/ouardaw/quantum-vs-classical-supernova-classification" class="project-link cyan" target="_blank">GitHub <span class="arrow">&rarr;</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QISKIT ADVOCACY -->
+            <div class="project-card featured fade-in">
+                <div class="project-img" style="display: flex; align-items: center; justify-content: center; background: #3d4550;">
+                    <img src="images/qiskit-badge.jpg" alt="IBM Qiskit Advocate Badge" style="width: 100%; height: 100%; object-fit: contain; padding: 1rem;">
+                </div>
+                <div class="project-body">
+                    <h3>IBM Qiskit Advocate</h3>
+                    <div class="project-type purple">Community / Volunteer &mdash; Jan 2026 &ndash; Present</div>
+                    <p>Active contributor to the quantum computing community through IBM's Qiskit Advocate program. Building skills in quantum circuits, entanglement, and quantum algorithms.</p>
+                    <div class="project-tech">
+                        <span>Qiskit</span>
+                        <span>Quantum Circuits</span>
+                        <span>IBM Quantum</span>
+                        <span>Community Building</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="cosmic-divider">
+
+<!-- ========== WRITING ========== -->
+<section id="writing">
+    <div class="container">
+        <div class="section-label fade-in">Writing</div>
+        <h2 class="section-title fade-in">Published on Medium</h2>
+        <p class="section-subtitle fade-in">Sharing what I learn as I explore quantum computing, ML, and product building.</p>
+
+        <a href="https://medium.com/@ouarda.jw/a-pms-journey-into-quantum-ml-what-i-learned-classifying-1-072-supernovae-39a4b91ce5ed" target="_blank" style="text-decoration: none; display: block;">
+            <div class="article-card fade-in">
+                <div class="article-img">
+                    <div style="text-align: center;">
+                        <div style="font-size: 3.5rem; margin-bottom: 1rem;">&#9883;</div>
+                        <div style="font-family: var(--font-display); font-size: 0.9rem; color: var(--accent-light); font-weight: 600;">Quantum ML</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">1,072 Supernovae</div>
+                    </div>
+                </div>
+                <div class="article-body">
+                    <div class="article-source">Medium</div>
+                    <h3>A PM's Journey into Quantum ML: What I Learned Classifying 1,072 Supernovae</h3>
+                    <p>My hands-on exploration comparing quantum and classical machine learning approaches on real astronomical data from the PLAsTiCC dataset. What worked, what didn't, and what it means for the future of quantum ML.</p>
+                    <div class="project-links">
+                        <span class="project-link orange">Read on Medium <span class="arrow">&rarr;</span></span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
+
+<hr class="cosmic-divider">
+
+<!-- ========== SKILLS ========== -->
+<section id="skills">
+    <div class="container">
+        <div class="section-label fade-in">Skills & Tools</div>
+        <h2 class="section-title fade-in">My toolkit</h2>
+        <p class="section-subtitle fade-in">Spanning product management, AI/ML engineering, and quantum computing.</p>
+
+        <div class="skills-grid">
+            <div class="skill-group fade-in">
+                <h3><span class="skill-icon">&#129302;</span> AI & Agents</h3>
+                <div class="skill-tags">
+                    <span>OpenAI API</span><span>LangChain</span><span>Agent Workflows</span>
+                    <span>Prompt Engineering</span><span>Claude Code</span><span>Codex</span>
+                </div>
+            </div>
+            <div class="skill-group fade-in">
+                <h3><span class="skill-icon">&#128640;</span> Product</h3>
+                <div class="skill-tags">
+                    <span>Product Strategy</span><span>Discovery</span><span>Roadmapping</span>
+                    <span>Agile / Scrum</span><span>UX Collaboration</span><span>A/B Testing</span>
+                </div>
+            </div>
+            <div class="skill-group fade-in">
+                <h3><span class="skill-icon">&#128202;</span> Data & ML</h3>
+                <div class="skill-tags">
+                    <span>Python</span><span>Pandas</span><span>NumPy</span><span>Scikit-learn</span>
+                    <span>SQL</span><span>TensorFlow</span><span>Tableau</span><span>Google Analytics</span>
+                </div>
+            </div>
+            <div class="skill-group fade-in">
+                <h3><span class="skill-icon">&#9883;</span> Quantum</h3>
+                <div class="skill-tags">
+                    <span>Qiskit</span><span>Quantum Circuits</span>
+                    <span>Measurement</span><span>Entanglement</span>
+                </div>
+            </div>
+            <div class="skill-group fade-in">
+                <h3><span class="skill-icon">&#128736;</span> Tools & Platforms</h3>
+                <div class="skill-tags">
+                    <span>Streamlit</span><span>GitHub</span><span>Jira</span>
+                    <span>Confluence</span><span>Figma</span><span>GCP</span>
+                </div>
+            </div>
+            <div class="skill-group fade-in">
+                <h3><span class="skill-icon">&#127760;</span> Domain</h3>
+                <div class="skill-tags">
+                    <span>Cloud / IaaS</span><span>eCommerce</span><span>GovTech</span>
+                    <span>Enterprise SaaS</span><span>Automotive</span><span>Small Business</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="cosmic-divider">
+
+<!-- ========== CERTIFICATIONS ========== -->
+<section id="certifications">
+    <div class="container">
+        <div class="section-label fade-in">Certifications</div>
+        <h2 class="section-title fade-in">Continuous learning</h2>
+        <p class="section-subtitle fade-in">Staying sharp through structured programs in quantum computing, AI, and product management.</p>
+
+        <div class="certs-grid">
+            <div class="cert-item fade-in">
+                <div class="cert-icon purple">&#9883;</div>
+                <div class="cert-info">
+                    <h4>Basics of Quantum Information</h4>
+                    <div class="cert-issuer">IBM</div>
+                    <div class="cert-year">2025</div>
+                </div>
+            </div>
+            <div class="cert-item fade-in">
+                <div class="cert-icon orange">&#129302;</div>
+                <div class="cert-info">
+                    <h4>Building AI-Powered Products</h4>
+                    <div class="cert-issuer">IBM</div>
+                    <div class="cert-year">2025</div>
+                </div>
+            </div>
+            <div class="cert-item fade-in">
+                <div class="cert-icon cyan">&#129504;</div>
+                <div class="cert-info">
+                    <h4>TensorFlow for AI, ML & Deep Learning</h4>
+                    <div class="cert-issuer">Coursera</div>
+                    <div class="cert-year">2023</div>
+                </div>
+            </div>
+            <div class="cert-item fade-in">
+                <div class="cert-icon purple">&#128202;</div>
+                <div class="cert-info">
+                    <h4>Machine Learning & Data Science Bootcamp</h4>
+                    <div class="cert-issuer">Udemy</div>
+                    <div class="cert-year">2023</div>
+                </div>
+            </div>
+            <div class="cert-item fade-in">
+                <div class="cert-icon orange">&#128640;</div>
+                <div class="cert-info">
+                    <h4>Certified Scrum Product Owner</h4>
+                    <div class="cert-issuer">Scrum Alliance</div>
+                    <div class="cert-year">2016</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="cosmic-divider">
+
+<!-- ========== EDUCATION ========== -->
+<section id="education">
+    <div class="container">
+        <div class="section-label fade-in">Education</div>
+        <h2 class="section-title fade-in">Academic foundation</h2>
+
+        <div class="edu-grid" style="margin-top: 2rem;">
+            <div class="edu-card fade-in">
+                <h3>ISGA</h3>
+                <div class="degree">BS, Software Engineering & Technology Management</div>
+            </div>
+            <div class="edu-card fade-in">
+                <h3>CPGE IBN GHAZI</h3>
+                <div class="degree">AS, Mathematics & Physics</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="cosmic-divider">
+
+<!-- ========== CONTACT ========== -->
+<section id="contact">
+    <div class="container">
+        <div class="contact-content">
+            <div class="section-label fade-in">Contact</div>
+            <h2 class="section-title fade-in">Let's connect</h2>
+            <p class="section-subtitle fade-in">Interested in working together, have a question, or just want to say hello? Drop me a message.</p>
+
+            <div class="contact-socials fade-in" style="margin-top: 1rem;">
+                <a href="https://www.linkedin.com/in/ouarda-jw/" class="social-link" target="_blank">&#128279; LinkedIn</a>
+                <a href="https://github.com/ouardaw/" class="social-link" target="_blank">&#128187; GitHub</a>
+                <a href="https://medium.com/@ouarda.jw" class="social-link" target="_blank">&#9998; Medium</a>
+                <a href="mailto:ouarda.jw@gmail.com" class="social-link">&#9993; Email</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+    <p>&copy; 2026 Ouarda J Wilson. Built with intention.</p>
+</footer>
+
+<!-- ========== SCROLL ANIMATION ========== -->
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
