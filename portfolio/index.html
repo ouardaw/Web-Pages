@@ -699,6 +699,148 @@
             .hero-name { font-size: 2.2rem; }
             .section-title { font-size: 1.6rem; }
         }
+
+        /* ========== DESIGN UPGRADES ========== */
+
+        /* Orbital ring in hero */
+        .hero-orbit {
+            position: absolute;
+            top: 50%;
+            right: -200px;
+            transform: translateY(-50%);
+            width: 700px;
+            height: 700px;
+            pointer-events: none;
+            opacity: 0.55;
+            z-index: 1;
+        }
+        .hero-orbit .ring {
+            position: absolute;
+            top: 50%; left: 50%;
+            border-radius: 50%;
+            border: 1px solid rgba(167, 139, 250, 0.18);
+            transform: translate(-50%, -50%);
+        }
+        .hero-orbit .ring.r1 { width: 280px; height: 280px; animation: orbit-spin 40s linear infinite; }
+        .hero-orbit .ring.r2 { width: 440px; height: 440px; animation: orbit-spin 70s linear infinite reverse; border-color: rgba(249, 115, 22, 0.15); }
+        .hero-orbit .ring.r3 { width: 620px; height: 620px; animation: orbit-spin 110s linear infinite; border-color: rgba(6, 182, 212, 0.12); }
+        .hero-orbit .planet {
+            position: absolute;
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #f97316, #9333ea 70%, transparent);
+            box-shadow: 0 0 20px rgba(167, 139, 250, 0.7);
+            top: 50%; left: 50%;
+            margin-top: -7px; margin-left: -7px;
+        }
+        .hero-orbit .planet.p1 { animation: orbit-p1 40s linear infinite; }
+        .hero-orbit .planet.p2 {
+            width: 10px; height: 10px; margin-top: -5px; margin-left: -5px;
+            background: radial-gradient(circle at 30% 30%, #06b6d4, #7c3aed 70%, transparent);
+            animation: orbit-p2 70s linear infinite reverse;
+        }
+        .hero-orbit .planet.p3 {
+            width: 8px; height: 8px; margin-top: -4px; margin-left: -4px;
+            background: radial-gradient(circle at 30% 30%, #fff, #a78bfa 70%, transparent);
+            animation: orbit-p3 110s linear infinite;
+        }
+        @keyframes orbit-spin { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+        @keyframes orbit-p1 { from { transform: rotate(0deg) translateX(140px); } to { transform: rotate(360deg) translateX(140px); } }
+        @keyframes orbit-p2 { from { transform: rotate(0deg) translateX(220px); } to { transform: rotate(360deg) translateX(220px); } }
+        @keyframes orbit-p3 { from { transform: rotate(0deg) translateX(310px); } to { transform: rotate(360deg) translateX(310px); } }
+
+        @media (max-width: 1024px) {
+            .hero-orbit { right: -350px; opacity: 0.35; width: 600px; height: 600px; }
+        }
+        @media (max-width: 768px) {
+            .hero-orbit { display: none; }
+        }
+
+        /* Make hero content sit above orbit */
+        #hero .hero-content { position: relative; z-index: 2; }
+
+        /* Glow trail behind section labels */
+        .section-label {
+            position: relative;
+            padding-left: 32px;
+        }
+        .section-label::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 50%;
+            width: 22px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-light));
+        }
+        .section-label::after {
+            content: '';
+            position: absolute;
+            left: 24px; top: 50%;
+            width: 5px; height: 5px;
+            margin-top: -2.5px;
+            border-radius: 50%;
+            background: var(--accent-light);
+            box-shadow: 0 0 12px rgba(167, 139, 250, 0.8);
+        }
+
+        /* Card glow on hover */
+        .project-card {
+            position: relative;
+        }
+        .project-card::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.4), rgba(249, 115, 22, 0.3), rgba(6, 182, 212, 0.3));
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.4s ease;
+            filter: blur(14px);
+        }
+        .project-card:hover::after { opacity: 1; }
+
+        /* Soft glow on timeline items on hover */
+        .timeline-content {
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .timeline-item:hover .timeline-content {
+            box-shadow: 0 0 30px rgba(124, 58, 237, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Cert items lift on hover */
+        .cert-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .cert-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 24px rgba(124, 58, 237, 0.18);
+        }
+
+        /* Shooting star animation across hero */
+        .shooting-star {
+            position: absolute;
+            top: 20%;
+            left: -100px;
+            width: 100px; height: 1px;
+            background: linear-gradient(90deg, transparent, #fff, rgba(167, 139, 250, 0.6), transparent);
+            opacity: 0;
+            animation: shoot 9s linear infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .shooting-star.s2 {
+            top: 60%;
+            animation-delay: 4.5s;
+            animation-duration: 11s;
+        }
+        @keyframes shoot {
+            0% { transform: translateX(0) translateY(0) rotate(-12deg); opacity: 0; }
+            5% { opacity: 1; }
+            20% { opacity: 1; }
+            30% { transform: translateX(120vw) translateY(40vh) rotate(-12deg); opacity: 0; }
+            100% { transform: translateX(120vw) translateY(40vh) rotate(-12deg); opacity: 0; }
+        }
     </style>
 </head>
 <body>
@@ -729,6 +871,16 @@
 <!-- ========== HERO ========== -->
 <section id="hero">
     <div class="hero-nebula"></div>
+    <div class="hero-orbit" aria-hidden="true">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+        <div class="planet p1"></div>
+        <div class="planet p2"></div>
+        <div class="planet p3"></div>
+    </div>
+    <div class="shooting-star" aria-hidden="true"></div>
+    <div class="shooting-star s2" aria-hidden="true"></div>
     <div class="container hero-content">
         <div class="hero-badge">
             <span class="dot"></span>
@@ -738,8 +890,7 @@
             <span class="gradient-text">Ouarda J Wilson.</span>
         </h1>
         <p class="hero-tagline">
-            <strong>Senior Product Manager</strong> with 10+ years shipping cloud and enterprise products.
-            <strong>Founder</strong> of Orion Ascend. <strong>IBM Qiskit Advocate</strong> exploring quantum computing and ML.
+            <strong>Senior Product Manager</strong> with 17+ years across product and engineering. <strong>IBM Qiskit Advocate</strong> building at the intersection of quantum, AI, and product. <strong>Founder</strong> of Orion Ascend.
         </p>
         <div class="hero-buttons">
             <a href="#contact" class="btn btn-primary"><span>Get in Touch &rarr;</span></a>
@@ -759,13 +910,13 @@
                 <div class="section-label">About</div>
                 <h2 class="section-title">Product leader with a builder's mindset</h2>
                 <p>
-                    I started my career back in 2007 as a software engineer, which means I've spent close to two decades in tech, the last ten focused on product management. I've shipped <strong>cloud infrastructure products at OVHcloud</strong>, <strong>government solutions at Monster</strong>, and <strong>enterprise automation at Lexmark</strong>. My first product role was at <strong>PSA Peugeot-Citro&euml;n</strong> in Paris, where I deployed web solutions across 19 European branches.
+                    I started my career in 2007 as a software engineer, which means close to two decades in tech with the last ten focused on product management. I've shipped <strong>cloud infrastructure products at OVHcloud</strong>, <strong>government solutions at Monster</strong>, and <strong>enterprise automation at Lexmark</strong>. My first product role was at <strong>PSA Peugeot-Citro&euml;n</strong> in Paris, where I deployed web solutions across 19 European branches.
                 </p>
                 <p>
-                    In 2025, I founded <strong>Orion Ascend</strong> to help small businesses unlock growth through digital tools, automation, and AI-powered opportunity analysis. I also build things on the side &mdash; from astronomy web apps to quantum ML benchmarks &mdash; because I genuinely can't stop tinkering.
+                    In 2025, I founded <strong>Orion Ascend</strong> to help small businesses unlock growth through digital tools, automation, and AI-powered opportunity analysis. I also build things on the side, from astronomy web apps to interactive quantum education tools, because I genuinely can't stop tinkering.
                 </p>
                 <p>
-                    As an <strong>IBM Qiskit Advocate</strong>, I'm exploring where quantum computing, machine learning, and product strategy intersect. It's early, it's exciting, and I think product thinking has a real role to play in making quantum useful.
+                    As an <strong>IBM Qiskit Advocate</strong>, I work at the intersection of quantum computing, machine learning, and product strategy. I built <strong>Quantum Playground</strong>, an interactive web app that teaches quantum concepts to students using real Qiskit circuits, and published research comparing quantum and classical ML approaches on real astronomical data.
                 </p>
                 <p>
                     When I'm not working, I love reading about space and astrophysics, listening to science podcasts, playing adventure video games, and diving into sci-fi books. Currently based in <strong>Ashburn, VA</strong>.
@@ -795,13 +946,15 @@
                 <div class="timeline-date">Jan 2026 &mdash; Present</div>
                 <div class="timeline-content">
                     <h3>Qiskit Advocate</h3>
-                    <div class="company">IBM (Volunteer / Community Program)</div>
+                    <div class="company">IBM Quantum (Community Recognition Program)</div>
                     <ul>
-                        <li>Developing skills in quantum computing, community building, and leadership</li>
-                        <li>Contributing to the growth of the quantum computing community</li>
+                        <li>Selected for IBM Quantum's recognition program for active Qiskit contributors and quantum educators</li>
+                        <li>Built and deployed <strong>Quantum Playground</strong>, an interactive Qiskit web app teaching superposition, multi-qubit state, and entanglement to students using real quantum circuits</li>
+                        <li>Published quantum vs. classical ML research on PLAsTiCC astronomical data with a companion Medium article</li>
                     </ul>
-                    <span class="tag tag-purple">Quantum</span>
-                    <span class="tag tag-cyan">Community</span>
+                    <span class="tag tag-purple">Qiskit</span>
+                    <span class="tag tag-cyan">Quantum Education</span>
+                    <span class="tag tag-orange">Community</span>
                 </div>
             </div>
 
@@ -824,17 +977,18 @@
             <div class="timeline-item fade-in">
                 <div class="timeline-date">Jan 2024 &mdash; Present</div>
                 <div class="timeline-content">
-                    <h3>Independent Product Builder</h3>
-                    <div class="company">Professional Development & Technical Projects</div>
+                    <h3>Independent Builder &mdash; Quantum & AI</h3>
+                    <div class="company">Self-directed Technical Projects</div>
                     <div class="location">Ashburn, VA</div>
                     <ul>
-                        <li>Built Stellaris &mdash; a production astronomy web app with AI-powered Q&A using LangChain and ChatGPT API</li>
-                        <li>Developed quantum vs. classical ML benchmark on 1,072 PLAsTiCC supernova samples</li>
-                        <li>Completed certifications in IBM Quantum, ML, TensorFlow, and Generative AI</li>
+                        <li>Built <strong>Quantum Playground</strong> &mdash; an interactive Qiskit web app teaching quantum concepts to students with real Hadamard gates, CNOTs, and Bell states</li>
+                        <li>Built <strong>Stellaris</strong> &mdash; a production astronomy web app with AI-powered Q&A using LangChain and ChatGPT API</li>
+                        <li>Developed and published a quantum vs. classical ML benchmark on 1,072 PLAsTiCC supernova samples</li>
+                        <li>Completed certifications in IBM Quantum, Generative AI, TensorFlow, and AI product management</li>
                     </ul>
-                    <span class="tag tag-purple">Python</span>
+                    <span class="tag tag-purple">Qiskit</span>
                     <span class="tag tag-orange">LangChain</span>
-                    <span class="tag tag-cyan">Qiskit</span>
+                    <span class="tag tag-cyan">Python</span>
                 </div>
             </div>
 
@@ -985,6 +1139,32 @@
                 </div>
             </div>
 
+            <!-- QUANTUM PLAYGROUND -->
+            <div class="project-card fade-in">
+                <div class="project-img" style="display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, #1a0f3d, rgba(124,58,237,0.25));">
+                    <div style="text-align:center; padding: 1.5rem;">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">&#129418;</div>
+                        <div style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--accent-light);">Quantum Playground</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem;">Real Qiskit circuits, no equations</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.3rem;">Built for the next generation</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <h3>Quantum Playground</h3>
+                    <div class="project-type purple">Interactive Education / Live App</div>
+                    <p>Interactive web app that teaches superposition, multi-qubit state, and entanglement to middle and high school students using real Qiskit circuits. Every visualization runs on actual Hadamard gates, CNOTs, and Bell states. No equations required.</p>
+                    <div class="project-tech">
+                        <span>Qiskit</span>
+                        <span>Streamlit</span>
+                        <span>Python</span>
+                        <span>Quantum Education</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://quantumplayground.streamlit.app/" class="project-link purple" target="_blank">Live App <span class="arrow">&rarr;</span></a>
+                    </div>
+                </div>
+            </div>
+
             <!-- QISKIT ADVOCACY -->
             <div class="project-card featured fade-in">
                 <div class="project-img" style="display: flex; align-items: center; justify-content: center; background: #3d4550;">
@@ -1050,8 +1230,8 @@
             <div class="skill-group fade-in">
                 <h3><span class="skill-icon">&#129302;</span> AI & Agents</h3>
                 <div class="skill-tags">
-                    <span>OpenAI API</span><span>LangChain</span><span>Agent Workflows</span>
-                    <span>Prompt Engineering</span><span>Claude Code</span><span>Codex</span>
+                    <span>OpenAI API</span><span>LangChain</span><span>Generative AI</span>
+                    <span>Agent Workflows</span><span>Prompt Engineering</span><span>Claude Code</span>
                 </div>
             </div>
             <div class="skill-group fade-in">
@@ -1071,8 +1251,9 @@
             <div class="skill-group fade-in">
                 <h3><span class="skill-icon">&#9883;</span> Quantum</h3>
                 <div class="skill-tags">
-                    <span>Qiskit</span><span>Quantum Circuits</span>
-                    <span>Measurement</span><span>Entanglement</span>
+                    <span>Qiskit</span><span>Quantum Circuits</span><span>Statevector</span>
+                    <span>Superposition</span><span>Entanglement</span><span>Bell States</span>
+                    <span>Hadamard / CNOT</span><span>Quantum ML</span>
                 </div>
             </div>
             <div class="skill-group fade-in">
@@ -1106,9 +1287,25 @@
             <div class="cert-item fade-in">
                 <div class="cert-icon purple">&#9883;</div>
                 <div class="cert-info">
+                    <h4>IBM Qiskit Advocate</h4>
+                    <div class="cert-issuer">IBM Quantum</div>
+                    <div class="cert-year">2026</div>
+                </div>
+            </div>
+            <div class="cert-item fade-in">
+                <div class="cert-icon purple">&#9883;</div>
+                <div class="cert-info">
                     <h4>Basics of Quantum Information</h4>
-                    <div class="cert-issuer">IBM</div>
+                    <div class="cert-issuer">IBM (John Watrous)</div>
                     <div class="cert-year">2025</div>
+                </div>
+            </div>
+            <div class="cert-item fade-in">
+                <div class="cert-icon orange">&#128200;</div>
+                <div class="cert-info">
+                    <h4>Quantum Business Foundations</h4>
+                    <div class="cert-issuer">IBM</div>
+                    <div class="cert-year">2026</div>
                 </div>
             </div>
             <div class="cert-item fade-in">
